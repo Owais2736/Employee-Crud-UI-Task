@@ -1,14 +1,7 @@
-'use client';
+"use client";
 
-import { Table, Button, Popconfirm, Tag, Space } from 'antd';
-
-interface Employee {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  status: boolean;
-}
+import { Table, Button, Popconfirm, Tag, Space } from "antd";
+import { Employee } from "@/types/employee";
 
 interface Props {
   employees: Employee[];
@@ -19,30 +12,30 @@ interface Props {
 export default function EmployeeTable({ employees, onEdit, onDelete }: Props) {
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
+      title: "Name",
+      dataIndex: "name",
       sorter: (a: Employee, b: Employee) => a.name.localeCompare(b.name),
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
+      title: "Email",
+      dataIndex: "email",
     },
     {
-      title: 'Role',
-      dataIndex: 'role',
+      title: "Role",
+      dataIndex: "role",
     },
     {
-      title: 'Status',
-      dataIndex: 'status',
+      title: "Status",
+      dataIndex: "status",
       render: (isActive: boolean) =>
         isActive ? (
           <Tag color="green">Active</Tag>
         ) : (
-          <Tag color="default">Inactive</Tag>
+          <Tag color="red">InActive</Tag>
         ),
     },
     {
-      title: 'Actions',
+      title: "Actions",
       render: (_: any, record: Employee) => (
         <Space>
           <Button type="primary" onClick={() => onEdit(record)}>
