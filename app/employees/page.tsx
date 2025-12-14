@@ -99,7 +99,7 @@ export default function EmployeesPage() {
   };
 
   return (
-    <div style={{ padding: 44 }}>
+    <div className="p-4 lg:p-12">
       <Row justify="space-between" align="middle" style={{ marginBottom: 20 }}>
         <Col>
           <Title level={3} style={{ margin: 0 }}>
