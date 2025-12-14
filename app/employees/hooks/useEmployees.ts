@@ -3,113 +3,32 @@ import { useEffect, useState } from "react";
 import { Employee } from "../../../types/employee";
 import { v4 as uuidv4 } from "uuid";
 
-const localStorageEmployeeObject = "employee";
+const STORAGE_KEY = "employee";
 
 export default function useEmployees() {
   const [employees, setEmployees] = useState<Employee[]>([]);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(localStorageEmployeeObject);
+      const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        setEmployees(JSON.parse(raw) as Employee[]);
-        return;
+        setEmployees(JSON.parse(raw));
       }
     } catch (e) {
       console.error("Failed to read from localStorage", e);
+    } finally {
+      setIsHydrated(true);
     }
-
-    // sampleData sample data if empty
-    const sampleData: Employee[] = [
-      {
-        id: uuidv4(),
-        name: "Faraz Khan",
-        email: "faraz@gmail.com",
-        role: "Developer",
-        status: true,
-      },
-      {
-        id: uuidv4(),
-        name: "Bilal Ahmed",
-        email: "bilal@gmail.com",
-        role: "Lead",
-        status: true,
-      },
-      {
-        id: uuidv4(),
-        name: "Sara Ali",
-        email: "sara@gmail.com",
-        role: "Designer",
-        status: false,
-      },
-      {
-        id: uuidv4(),
-        name: "Sara Ali",
-        email: "sara@gmail.com",
-        role: "Designer",
-        status: false,
-      },
-
-      {
-        id: uuidv4(),
-        name: "Sara Ali",
-        email: "sara@gmail.com",
-        role: "Designer",
-        status: false,
-      },
-      {
-        id: uuidv4(),
-        name: "Sara Ali",
-        email: "sara@gmail.com",
-        role: "Designer",
-        status: false,
-      },
-      {
-        id: uuidv4(),
-        name: "Sara Ali",
-        email: "sara@gmail.com",
-        role: "Designer",
-        status: false,
-      },
-      {
-        id: uuidv4(),
-        name: "Sara Ali",
-        email: "sara@gmail.com",
-        role: "Designer",
-        status: false,
-      },
-      {
-        id: uuidv4(),
-        name: "Sara Ali",
-        email: "sara@gmail.com",
-        role: "Designer",
-        status: false,
-      },
-      {
-        id: uuidv4(),
-        name: "Sara Ali",
-        email: "sara@gmail.com",
-        role: "Designer",
-        status: false,
-      },
-    ];
-    setEmployees(sampleData);
   }, []);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(
-        localStorageEmployeeObject,
-        JSON.stringify(employees)
-      );
-    } catch (e) {
-      console.error("Failed to write employees to localStorage", e);
-    }
-  }, [employees]);
+    if (!isHydrated) return;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(employees));
+  }, [employees, isHydrated]);
 
   function addEmployee(payload: Omit<Employee, "id">) {
-    const newEmp: Employee = { id: uuidv4(), ...payload };
-    setEmployees((prev) => [newEmp, ...prev]);
+    setEmployees((prev) => [{ id: uuidv4(), ...payload }, ...prev]);
   }
 
   function updateEmployee(id: string, payload: Omit<Employee, "id">) {
@@ -119,7 +38,7 @@ export default function useEmployees() {
   }
 
   function deleteEmployee(id: string) {
-    setEmployees((prev) => prev.filter((item) => item.id !== id));
+    setEmployees((prev) => prev.filter((e) => e.id !== id));
   }
 
   return {
@@ -127,6 +46,5 @@ export default function useEmployees() {
     addEmployee,
     updateEmployee,
     deleteEmployee,
-    setEmployees,
   };
 }

@@ -1,28 +1,10 @@
-"use client";
 import Image from "next/image";
 import "./globals.css";
-import { useEffect, useState } from "react";
 import profileImage from "../assests/profile.png";
 import Link from "next/link";
-
-interface Employee {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  status: boolean;
-}
+import EmployeeList from "@/src/components/EmployeeList";
 
 export default function Home() {
-  const [employees, setEmployees] = useState<Employee[]>([]);
-
-  useEffect(() => {
-    // Get employee data from localStorage
-    const stored = localStorage.getItem("employee");
-    if (stored) {
-      setEmployees(JSON.parse(stored));
-    }
-  }, []);
   return (
     <>
       <div className="relative bg-[#ffffff] h-full min-h-screen">
@@ -36,11 +18,11 @@ export default function Home() {
               className="bg-[#081028] shadow-lg h-screen fixed top-0 left-0 overflow-auto overflow-x-hidden z-[99] lg:w-[270px] max-lg:w-0 max-lg:invisible transition-all duration-500"
             >
               <div className="bg-[#081028] flex items-center gap-4 pt-6 pb-2 px-4 sticky top-0 min-h-[64px] z-[100]">
-                <a href="#" className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2">
                   <p className="text-base font-semibold text-gray-300 tracking-wide">
                     Employee Dashboard
                   </p>
-                </a>
+                </Link>
 
                 <button id="close-sidebar" className="ml-auto cursor-pointer">
                   <svg
@@ -49,9 +31,9 @@ export default function Home() {
                     viewBox="0 0 20 20"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M.13 17.05a1.41 1.41 0 0 1 1.41-1.41H10a1.41 1.41 0 1 1 0 2.82H1.54a1.41 1.41 0 0 1-1.41-1.41zm0-14.1a1.41 1.41 0 0 1 1.41-1.41h16.92a1.41 1.41 0 1 1 0 2.82H1.54A1.41 1.41 0 0 1 .13 2.95zm0 7.05a1.41 1.41 0 0 1 1.41-1.41h16.92a1.41 1.41 0 1 1 0 2.82H1.54A1.41 1.41 0 0 1 .13 10z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                       data-original="#000000"
                     />
                   </svg>
@@ -82,7 +64,6 @@ export default function Home() {
                       href="/employees"
                       className="text-gray-300 text-sm font-medium flex items-center cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2.5 transition-all duration-300"
                     >
-                      {/* Employee Icon */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -97,7 +78,6 @@ export default function Home() {
                         Employees
                       </span>
 
-                      {/* Arrow Icon */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="arrowIcon w-2.5 h-2.5 fill-current -rotate-90 ml-auto transition-all duration-500"
@@ -109,7 +89,7 @@ export default function Home() {
                   </li>
 
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="text-gray-300 text-sm font-medium flex items-center cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2.5 transition-all duration-300"
                     >
@@ -141,37 +121,37 @@ export default function Home() {
                           data-original="#000000"
                         />
                       </svg>
-                    </a>
+                    </Link>
                     <ul className="sub-menu overflow-hidden transition-[max-height] duration-500 ease-in-out ml-8">
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Analytics</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Logistics</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Academy</span>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
 
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="text-gray-300 text-sm font-medium flex items-center cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2.5 transition-all duration-300"
                     >
@@ -207,37 +187,37 @@ export default function Home() {
                           data-original="#000000"
                         />
                       </svg>
-                    </a>
+                    </Link>
                     <ul className="sub-menu max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in-out ml-8">
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Help center</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Article</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Education</span>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
 
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="text-gray-300 text-sm font-medium flex items-center cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2.5 transition-all duration-300"
                     >
@@ -247,7 +227,7 @@ export default function Home() {
                         className="w-[18px] h-[18px] mr-3"
                         viewBox="0 0 510 510"
                       >
-                        <g fill-opacity=".9">
+                        <g fillOpacity=".9">
                           <path
                             d="M255 0C114.75 0 0 114.75 0 255s114.75 255 255 255 255-114.75 255-255S395.25 0 255 0zm0 459c-112.2 0-204-91.8-204-204S142.8 51 255 51s204 91.8 204 204-91.8 204-204 204z"
                             data-original="#000000"
@@ -271,29 +251,29 @@ export default function Home() {
                           data-original="#000000"
                         />
                       </svg>
-                    </a>
+                    </Link>
                     <ul className="sub-menu max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in-out ml-8">
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Date</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Time</span>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
 
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="text-gray-300 text-sm font-medium flex items-center cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2.5 transition-all duration-300"
                     >
@@ -321,37 +301,37 @@ export default function Home() {
                           data-original="#000000"
                         />
                       </svg>
-                    </a>
+                    </Link>
                     <ul className="sub-menu max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in-out ml-8">
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Users</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Leads</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Visitors</span>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
 
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="text-gray-300 text-sm font-medium flex items-center cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2.5 transition-all duration-300"
                     >
@@ -389,23 +369,23 @@ export default function Home() {
                           data-original="#000000"
                         />
                       </svg>
-                    </a>
+                    </Link>
                     <ul className="sub-menu max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in-out ml-8">
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Profile</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link
                           href="#"
                           className="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300"
                         >
                           <span>Logout</span>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
@@ -416,7 +396,7 @@ export default function Home() {
                 <div>
                   <ul className="space-y-2">
                     <li>
-                      <a
+                      <Link
                         href="#"
                         className="text-gray-300 text-sm font-medium flex items-center cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2.5 transition-all duration-300"
                       >
@@ -436,10 +416,10 @@ export default function Home() {
                           />
                         </svg>
                         <span>Security</span>
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="#"
                         className="text-gray-300 text-sm font-medium flex items-center cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2.5 transition-all duration-300"
                       >
@@ -456,7 +436,7 @@ export default function Home() {
                           />
                         </svg>
                         <span>Preferences</span>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
 
@@ -490,9 +470,9 @@ export default function Home() {
               viewBox="0 0 20 20"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M.13 17.05a1.41 1.41 0 0 1 1.41-1.41H10a1.41 1.41 0 1 1 0 2.82H1.54a1.41 1.41 0 0 1-1.41-1.41zm0-14.1a1.41 1.41 0 0 1 1.41-1.41h16.92a1.41 1.41 0 1 1 0 2.82H1.54A1.41 1.41 0 0 1 .13 2.95zm0 7.05a1.41 1.41 0 0 1 1.41-1.41h16.92a1.41 1.41 0 1 1 0 2.82H1.54A1.41 1.41 0 0 1 .13 10z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
                 data-original="#000000"
               />
             </svg>
@@ -540,36 +520,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-12 mb-6 px-4">
-              <div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
-                {employees.map((emp) => (
-                  <div
-                    key={emp.id}
-                    className="bg-gray-100 shadow-sm hover:shadow-md p-6 rounded-xl transform transition duration-300 relative overflow-hidden"
-                  >
-                    <div className="flex justify-between items-center mb-4">
-                      <span
-                        className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                          emp.status
-                            ? "bg-green-200 text-green-800"
-                            : "bg-red-200 text-red-800"
-                        }`}
-                      >
-                        {emp.status ? "Active" : "Inactive"}
-                      </span>
-                      <span className="text-sm text-gray-600">{emp.role}</span>
-                    </div>
-
-                    <div className="mb-4">
-                      <h3 className="text-lg font-semibold text-gray-800">
-                        {emp.name}
-                      </h3>
-                      <p className="text-gray-500 mt-1">{emp.email}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <EmployeeList />
           </section>
         </div>
       </div>

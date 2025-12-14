@@ -7,7 +7,12 @@ import EmployeeFormModal from "./components/EmployeeFormModal";
 
 import { Button, Col, Input, Row, Card, Typography } from "antd";
 
-import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
+import {
+  DashboardOutlined,
+  PlusOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import Link from "next/link";
 
 const { Title, Text } = Typography;
 
@@ -54,12 +59,26 @@ export default function EmployeesPage() {
         </Col>
 
         <Col>
+          <Link href={"/"}>
+            <Button
+              type="primary"
+              icon={<DashboardOutlined />}
+              size="large"
+              style={{
+                marginTop: "10px",
+                backgroundColor: "#0f172a",
+                borderColor: "#0f172a",
+              }}
+            >
+              Dashboard
+            </Button>
+          </Link>
           <Button
             type="primary"
             icon={<PlusOutlined />}
             size="large"
             onClick={openAddModal}
-            style={{ marginTop: "10px" }}
+            style={{ marginTop: "10px", marginLeft: "10px" }}
           >
             Add Employee
           </Button>
@@ -67,7 +86,7 @@ export default function EmployeesPage() {
       </Row>
 
       <Card
-        bordered={false}
+        variant={"borderless"}
         style={{
           borderRadius: 12,
           boxShadow: "0 6px 16px rgba(0,0,0,0.06)",

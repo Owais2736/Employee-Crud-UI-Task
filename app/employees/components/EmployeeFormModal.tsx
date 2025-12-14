@@ -46,7 +46,7 @@ export default function EmployeeFormModal({
       open={open}
       width={520}
       centered
-      destroyOnClose
+      destroyOnHidden
       onCancel={onClose}
       onOk={handleOk}
       okText={initialValues ? "Update Employee" : "Create Employee"}

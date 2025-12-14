@@ -12,9 +12,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-title: 'Employee CRUD',
-description: 'Employee Crud website using Next js , TypeScriptc and Ant Design',
-}
+  title: "Employee CRUD",
+  description:
+    "Employee Crud website using Next js , TypeScriptc and Ant Design",
+};
 
 export default function RootLayout({
   children,

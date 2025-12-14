@@ -58,6 +58,7 @@ export default function EmployeeTable({ employees, onEdit, onDelete }: Props) {
       rowKey="id"
       dataSource={employees}
       columns={columns}
+      locale={{ emptyText: "No employees added yet" }}
       pagination={{ pageSize: 6 }}
     />
   );
